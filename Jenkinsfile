@@ -3,7 +3,7 @@ pipeline {
   agent any
   parameters {
       string(name:  'VERSION', defaultValue: '', description: 'version to deploy on prod')
-      choice(name:  'VERSION', choices: ['1.1','1.2','1.3'], description: '')
+      choice(name:  'VERSION2', choices: ['1.1','1.2','1.3'], description: '')
       booleanParam(name:  'executeTests', defaultValue: true, description: '')
   }
   environment {
@@ -21,6 +21,7 @@ pipeline {
       steps {
          echo 'building the app...'
          echo "Building version ${NEW_VERSION}" //double quotes for env variables
+         echo "deploying verion ${params.VERSION2}"
       }
     }
     
@@ -44,7 +45,7 @@ pipeline {
       steps {
          echo 'deploying the app..'
          echo "deploying with ${SERVER_CREDENTIALS}"
-        echo "deploying verion ${params.VERSION}"
+         echo "deploying verion ${params.VERSION}"
       }
     }
   }
